@@ -59,10 +59,11 @@
         min-height: 100%;
         display: grid;
         place-items: center;
-        padding: 24px;
+        padding: 16px;
       }
       .card {
-        width: min(680px, 94vw);
+        width: 100%;
+        max-width: 680px;
         background: linear-gradient(
           180deg,
           rgba(11, 18, 32, 0.9),
@@ -70,7 +71,7 @@
         );
         border: 1px solid rgba(255, 255, 255, 0.06);
         border-radius: 28px;
-        padding: 28px;
+        padding: clamp(16px, 4vw, 28px);
         position: relative;
         overflow: hidden;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45),
@@ -107,11 +108,12 @@
       header {
         display: flex;
         align-items: center;
-        gap: 18px;
+        gap: 14px;
         padding-bottom: 10px;
+        flex-wrap: wrap;
       }
       .logo {
-        width: 84px;
+        width: clamp(64px, 20vw, 84px);
         aspect-ratio: 1;
         border-radius: 20px;
         background: linear-gradient(140deg, var(--brand), var(--brand-2));
@@ -125,6 +127,7 @@
           0 0 0 6px rgba(34, 211, 238, 0.12);
         position: relative;
         overflow: hidden;
+        flex-shrink: 0;
       }
       .logo img {
         width: 100%;
@@ -133,18 +136,19 @@
       }
       .brand h1 {
         margin: 0;
-        font-size: 28px;
+        font-size: clamp(20px, 5vw, 28px);
         letter-spacing: 0.3px;
       }
       .brand .handle {
         color: var(--muted);
         font-weight: 500;
-        font-size: 14px;
+        font-size: clamp(12px, 3.5vw, 14px);
       }
       .desc {
         margin: 14px 0 8px;
         color: #d7e2f0;
         line-height: 1.6;
+        font-size: clamp(14px, 4vw, 16px);
       }
 
       .links {
@@ -153,7 +157,6 @@
         margin-top: 20px;
       }
       .btn {
-        --p: rgba(34, 211, 238, 0.22);
         position: relative;
         display: flex;
         align-items: center;
@@ -166,32 +169,33 @@
           rgba(255, 255, 255, 0.03)
         );
         border: 1px solid rgba(255, 255, 255, 0.08);
-        padding: 14px 16px;
+        padding: 12px 14px;
         border-radius: 16px;
         font-weight: 600;
+        font-size: clamp(14px, 4vw, 16px);
         letter-spacing: 0.2px;
         transition: transform 0.14s ease, box-shadow 0.14s ease,
           border-color 0.14s ease;
         box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      }
+      .btn img {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        filter: invert(100%) brightness(200%);
+        transition: filter 0.2s ease;
       }
       .btn:hover {
         transform: translateY(-2px);
         border-color: rgba(255, 255, 255, 0.16);
         box-shadow: 0 16px 34px rgba(0, 0, 0, 0.45);
       }
-      .btn img {
-        display: block;
-        width: 22px;
-        height: 22px;
-        filter: invert(100%) brightness(200%);
-        transition: filter 0.2s ease;
-      }
       .btn:hover img {
         filter: none;
       }
       .tag {
         margin-left: auto;
-        font-size: 12px;
+        font-size: clamp(10px, 3vw, 12px);
         font-weight: 600;
         opacity: 0.9;
         padding: 0.2rem 0.6rem;
@@ -213,6 +217,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        flex-wrap: wrap;
         gap: 10px;
         color: var(--muted);
         font-size: 12px;
@@ -244,9 +249,24 @@
         margin-top: 16px;
         font-size: 12px;
         color: var(--muted);
+        text-align: center;
       }
       .copy {
         cursor: pointer;
+      }
+
+      /* 📱 Extra small device (max 360px) */
+      @media (max-width: 360px) {
+        .btn {
+          padding: 10px 12px;
+          gap: 8px;
+        }
+        .tag {
+          display: none; /* sembunyiin tag biar tombol muat */
+        }
+        header {
+          gap: 10px;
+        }
       }
     </style>
   </head>
